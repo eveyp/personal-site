@@ -1,6 +1,7 @@
 +++
 # Hero Carousel widget.
 widget = "slider"
+headless = true  # This file represents a page section.
 active = false
 
 # Order that this section will appear in.
