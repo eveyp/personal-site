@@ -4,7 +4,7 @@ date = 2018-08-16
 draft = false
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
-authors = ["Ian Eve Perry"]
+authors = ["Eve Perry"]
 
 # Publication type.
 # Legend:
@@ -23,10 +23,10 @@ publication_short = ""
 
 # Abstract and optional shortened version.
 abstract = "The Low-Wage Work in California Data Explorer offers an in-depth look at the people who make up California’s low-wage workforce and provides users with graphics, tables, research summaries, interactive visualizations, and downloadable data. The explorer provides a wide range of information on the state’s low-wage workforce, including demographics, job characteristics, industries, occupations, use of public assistance programs, and geography."
-abstract_short = ""
+summary = ""
 
 # Is this a selected publication? (true/false)
-selected = true
+featured = true
 
 # Projects (optional).
 #   Associate this publication with one or more of your projects.
@@ -61,7 +61,7 @@ url_source = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-	url_custom = [{name = "Website", url = "http://laborcenter.berkeley.edu/low-wage-work-in-california"}]
+	links = [{name = "Website", url = "http://laborcenter.berkeley.edu/low-wage-work-in-california"}]
 
 # Digital Object Identifier (DOI)
 doi = ""
