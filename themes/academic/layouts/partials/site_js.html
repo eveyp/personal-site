@@ -16,11 +16,15 @@
       {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\"></script>" (printf $js.isotope.url $js.isotope.version) $js.isotope.sri | safeHTML }}
       {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\"></script>" (printf $js.fancybox.url $js.fancybox.version) $js.fancybox.sri | safeHTML }}
 
+      {{ if or .Params.diagram site.Params.diagram }}
+        {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\" title=\"mermaid\"></script>" (printf $js.mermaid.url $js.mermaid.version) $js.mermaid.sri | safeHTML }}
+      {{ end }}
+
       {{ if $.Scratch.Get "highlight_enabled" }}
         {{ $v := $js.highlight.version }}
         {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\"></script>" (printf $js.highlight.url $v) $js.highlight.sri | safeHTML }}
         {{ range site.Params.highlight_languages }}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/{{ $v }}/languages/{{ . }}.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/{{ $v }}/languages/{{ . }}.min.js"></script>
         {{ end }}
       {{ end }}
 
@@ -32,7 +36,7 @@
 
     {{/* Maps JS. */}}
     {{ if eq site.Params.map 1 }}
-      <script async defer src="//maps.googleapis.com/maps/api/js?key={{ site.Params.map_api_key }}"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ site.Params.map_api_key }}"></script>
       {{ if ($scr.Get "use_cdn") }}
       {{ printf "<script src=\"%s\" integrity=\"%s\" crossorigin=\"anonymous\"></script>" (printf $js.gmaps.url $js.gmaps.version) $js.gmaps.sri | safeHTML }}
       {{ end }}
@@ -43,7 +47,7 @@
     {{/* Comments JS. */}}
     {{ $comments_enabled := and site.DisqusShortname (not (or site.Params.disable_comments $.Params.disable_comments)) }}
     {{ if and $comments_enabled (site.Params.comment_count | default true) }}
-    <script id="dsq-count-scr" src="//{{ site.DisqusShortname }}.disqus.com/count.js" async></script>
+    <script id="dsq-count-scr" src="https://{{ site.DisqusShortname }}.disqus.com/count.js" async></script>
     {{ end }}
 
     {{/* Initialise code highlighting. */}}
@@ -146,5 +150,4 @@
     {{ $js_bundle := slice $js_bundle_head $js_bundle | resources.Concat "js/academic.min.js" | fingerprint "md5" }}
     <script src="{{ $js_bundle.RelPermalink }}"></script>
 
-  </body>
-</html>
+    {{ partial "custom_js" . }}
